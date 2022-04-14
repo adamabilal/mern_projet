@@ -14,7 +14,7 @@ class showBookDetails extends Component {
   componentDidMount() {
     // console.log("Print id: " + this.props.match.params.id);
     axios
-      .get('http://localhost:8082/api/books/'+this.props.match.params.id)
+      .get('http://localhost:8080/api/books/'+this.props.match.params.id)
       .then(res => {
         // console.log("Print-showBookDetails-API-response: " + res.data);
         this.setState({
@@ -28,7 +28,7 @@ class showBookDetails extends Component {
 
   onDeleteClick (id) {
     axios
-      .delete('http://localhost:8082/api/books/'+id)
+      .delete('http://localhost:8080/api/books/'+id)
       .then(res => {
         this.props.history.push("/");
       })
@@ -54,13 +54,13 @@ class showBookDetails extends Component {
         <tbody>
           <tr>
             <th scope="row">1</th>
-            <td>Title</td>
-            <td>{ book.title }</td>
+            <td>Titre</td>
+            <td>{ book.titre }</td>
           </tr>
           <tr>
             <th scope="row">2</th>
-            <td>Author</td>
-            <td>{ book.author }</td>
+            <td>Auteur</td>
+            <td>{ book.auteur }</td>
           </tr>
           <tr>
             <th scope="row">3</th>
@@ -69,13 +69,13 @@ class showBookDetails extends Component {
           </tr>
           <tr>
             <th scope="row">4</th>
-            <td>Publisher</td>
-            <td>{ book.publisher }</td>
+            <td>editeur</td>
+            <td>{ book.editeur }</td>
           </tr>
           <tr>
             <th scope="row">5</th>
-            <td>Published Date</td>
-            <td>{ book.published_date }</td>
+            <td> Date publication</td>
+            <td>{ book.date_publication }</td>
           </tr>
           <tr>
             <th scope="row">6</th>
@@ -93,14 +93,14 @@ class showBookDetails extends Component {
             <div className="col-md-10 m-auto">
               <br /> <br />
               <Link to="/" className="btn btn-outline-warning float-left">
-                  Show Book List
+                  voir la liste des livres
               </Link>
             </div>
             <br />
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Book's Record</h1>
+              <h1 className="display-4 text-center">livre enregistré</h1>
               <p className="lead text-center">
-                  View Book's Info
+                  voir info livre
               </p>
               <hr /> <br />
             </div>
@@ -111,20 +111,17 @@ class showBookDetails extends Component {
 
           <div className="row">
             <div className="col-md-6">
-              <button type="button" className="btn btn-outline-danger btn-lg btn-block" onClick={this.onDeleteClick.bind(this,book._id)}>Delete Book</button><br />
+              <button type="button" className="btn btn-outline-danger btn-lg btn-block" onClick={this.onDeleteClick.bind(this,book._id)}>Supprimer livre</button><br />
             </div>
 
             <div className="col-md-6">
               <Link to={`/edit-book/${book._id}`} className="btn btn-outline-info btn-lg btn-block">
-                    Edit Book
+                    editer un livre
               </Link>
               <br />
             </div>
 
           </div>
-            {/* <br />
-            <button type="button" class="btn btn-outline-info btn-lg btn-block">Edit Book</button>
-            <button type="button" class="btn btn-outline-danger btn-lg btn-block">Delete Book</button> */}
 
         </div>
       </div>

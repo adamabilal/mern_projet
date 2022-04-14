@@ -14,7 +14,7 @@ class ShowBookList extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:8082/api/books')
+      .get('http://localhost:8080/api/books')
       .then(res => {
         this.setState({
           books: res.data
@@ -32,7 +32,7 @@ class ShowBookList extends Component {
     let bookList;
 
     if(!books) {
-      bookList = "there is no book record!";
+      bookList = "il n'y a pas de livre!";
     } else {
       bookList = books.map((book, k) =>
         <BookCard book={book} key={k} />
@@ -45,12 +45,12 @@ class ShowBookList extends Component {
           <div className="row">
             <div className="col-md-12">
               <br />
-              <h2 className="display-4 text-center">Books List</h2>
+              <h2 className="display-4 text-center">Listes de  livres </h2>
             </div>
 
             <div className="col-md-11">
               <Link to="/create-book" className="btn btn-outline-warning float-right">
-                + Add New Book
+                + Ajouter un nouveau livre
               </Link>
               <br />
               <br />

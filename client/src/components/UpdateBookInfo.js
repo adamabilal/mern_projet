@@ -7,32 +7,32 @@ class UpdateBookInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: '',
+      titre: '',
       isbn: '',
-      author: '',
+      auteur: '',
       description: '',
-      published_date: '',
-      publisher: ''
+      date_publication: '',
+      editeur: ''
     };
   }
 
   componentDidMount() {
     // console.log("Print id: " + this.props.match.params.id);
     axios
-      .get('http://localhost:8082/api/books/'+this.props.match.params.id)
+      .get('http://localhost:8080/api/books/'+this.props.match.params.id)
       .then(res => {
         // this.setState({...this.state, book: res.data})
         this.setState({
-          title: res.data.title,
+          titre: res.data.titre,
           isbn: res.data.isbn,
-          author: res.data.author,
+          auteur: res.data.auteur,
           description: res.data.description,
-          published_date: res.data.published_date,
-          publisher: res.data.publisher
+          date_publication: res.data.date_publication,
+          editeur: res.data.editeur
         })
       })
       .catch(err => {
-        console.log("Error from UpdateBookInfo");
+        console.log("Error from mise à jour info livre");
       })
   };
 
@@ -44,21 +44,21 @@ class UpdateBookInfo extends Component {
     e.preventDefault();
 
     const data = {
-      title: this.state.title,
+      titre: this.state.titre,
       isbn: this.state.isbn,
-      author: this.state.author,
+      auteur: this.state.auteur,
       description: this.state.description,
-      published_date: this.state.published_date,
-      publisher: this.state.publisher
+      date_publication: this.state.date_publication,
+      editeur: this.state.editeur
     };
 
     axios
-      .put('http://localhost:8082/api/books/'+this.props.match.params.id, data)
+      .put('http://localhost:8080/api/books/'+this.props.match.params.id, data)
       .then(res => {
         this.props.history.push('/show-book/'+this.props.match.params.id);
       })
       .catch(err => {
-        console.log("Error in UpdateBookInfo!");
+        console.log("Error mise à jour info livre!");
       })
   };
 
@@ -71,13 +71,13 @@ class UpdateBookInfo extends Component {
             <div className="col-md-8 m-auto">
               <br />
               <Link to="/" className="btn btn-outline-warning float-left">
-                  Show BooK List
+                  voir liste des livres
               </Link>
             </div>
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Edit Book</h1>
+              <h1 className="display-4 text-center">Editer livre</h1>
               <p className="lead text-center">
-                  Update Book's Info
+                  mise à jour info livre
               </p>
             </div>
           </div>
@@ -85,13 +85,13 @@ class UpdateBookInfo extends Component {
           <div className="col-md-8 m-auto">
           <form noValidate onSubmit={this.onSubmit}>
             <div className='form-group'>
-              <label htmlFor="title">Title</label>
+              <label htmlFor="titre">titre</label>
               <input
                 type='text'
-                placeholder='Title of the Book'
-                name='title'
+                placeholder='titre du livre'
+                name='titre'
                 className='form-control'
-                value={this.state.title}
+                value={this.state.titre}
                 onChange={this.onChange}
               />
             </div>
@@ -110,13 +110,13 @@ class UpdateBookInfo extends Component {
             </div>
 
             <div className='form-group'>
-            <label htmlFor="author">Author</label>
+            <label htmlFor="auteur">auteur</label>
               <input
                 type='text'
-                placeholder='Author'
-                name='author'
+                placeholder='auteur'
+                name='auteur'
                 className='form-control'
-                value={this.state.author}
+                value={this.state.auteur}
                 onChange={this.onChange}
               />
             </div>
@@ -125,7 +125,7 @@ class UpdateBookInfo extends Component {
             <label htmlFor="description">Description</label>
               <input
                 type='text'
-                placeholder='Describe this book'
+                placeholder='decription du livre'
                 name='description'
                 className='form-control'
                 value={this.state.description}
@@ -134,29 +134,29 @@ class UpdateBookInfo extends Component {
             </div>
 
             <div className='form-group'>
-            <label htmlFor="published_date">Published Date</label>
+            <label htmlFor="date_publication"> Date publication</label>
               <input
                 type='date'
-                placeholder='published_date'
-                name='published_date'
+                placeholder='date_publication'
+                name='date_publication'
                 className='form-control'
-                value={this.state.published_date}
+                value={this.state.date_publication}
                 onChange={this.onChange}
               />
             </div>
             <div className='form-group'>
-            <label htmlFor="publisher">Publisher</label>
+            <label htmlFor="editeur">editeur</label>
               <input
                 type='text'
-                placeholder='Publisher of this Book'
-                name='publisher'
+                placeholder='editeur du livre'
+                name='editeur'
                 className='form-control'
-                value={this.state.publisher}
+                value={this.state.editeur}
                 onChange={this.onChange}
               />
             </div>
 
-            <button type="submit" className="btn btn-outline-info btn-lg btn-block">Update Book</button>
+            <button type="submit" className="btn btn-outline-info btn-lg btn-block">mise à jour livre</button>
             </form>
           </div>
 

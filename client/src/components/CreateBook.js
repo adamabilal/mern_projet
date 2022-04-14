@@ -8,12 +8,12 @@ class CreateBook extends Component {
   constructor() {
     super();
     this.state = {
-      title: '',
+      titre: '',
       isbn:'',
-      author:'',
+      auteur:'',
       description:'',
-      published_date:'',
-      publisher:''
+      date_publication:'',
+      editeur:''
     };
   }
 
@@ -25,29 +25,29 @@ class CreateBook extends Component {
     e.preventDefault();
 
     const data = {
-      title: this.state.title,
+      titre: this.state.titre,
       isbn: this.state.isbn,
-      author: this.state.author,
+      auteur: this.state.auteur,
       description: this.state.description,
-      published_date: this.state.published_date,
-      publisher: this.state.publisher
+      date_publication: this.state.date_publication,
+      editeur: this.state.editeur
     };
 
     axios
-      .post('http://localhost:8082/api/books', data)
+      .post('http://localhost:8080/api/books', data)
       .then(res => {
         this.setState({
-          title: '',
+          titre: '',
           isbn:'',
-          author:'',
+          auteur:'',
           description:'',
-          published_date:'',
-          publisher:''
+          date_publication:'',
+          editeur:''
         })
         this.props.history.push('/');
       })
       .catch(err => {
-        console.log("Error in CreateBook!");
+        console.log("erreur de création du livre !");
       })
   };
 
@@ -59,23 +59,23 @@ class CreateBook extends Component {
             <div className="col-md-8 m-auto">
               <br />
               <Link to="/" className="btn btn-outline-warning float-left">
-                  Show BooK List
+                  Voir la liste des livres
               </Link>
             </div>
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Add Book</h1>
+              <h1 className="display-4 text-center">Veuillez ajouter un livre s'il vous plait</h1>
               <p className="lead text-center">
-                  Create new book
+                  Création nouveau livre
               </p>
 
               <form noValidate onSubmit={this.onSubmit}>
                 <div className='form-group'>
                   <input
                     type='text'
-                    placeholder='Title of the Book'
-                    name='title'
+                    placeholder='titre du livre'
+                    name='titre'
                     className='form-control'
-                    value={this.state.title}
+                    value={this.state.titre}
                     onChange={this.onChange}
                   />
                 </div>
@@ -95,8 +95,8 @@ class CreateBook extends Component {
                 <div className='form-group'>
                   <input
                     type='text'
-                    placeholder='Author'
-                    name='author'
+                    placeholder='Auteur'
+                    name='auteur'
                     className='form-control'
                     value={this.state.author}
                     onChange={this.onChange}
@@ -106,7 +106,7 @@ class CreateBook extends Component {
                 <div className='form-group'>
                   <input
                     type='text'
-                    placeholder='Describe this book'
+                    placeholder='Description du livre'
                     name='description'
                     className='form-control'
                     value={this.state.description}
@@ -117,20 +117,20 @@ class CreateBook extends Component {
                 <div className='form-group'>
                   <input
                     type='date'
-                    placeholder='published_date'
-                    name='published_date'
+                    placeholder='date de publication'
+                    name='date_publication'
                     className='form-control'
-                    value={this.state.published_date}
+                    value={this.state.date_publication}
                     onChange={this.onChange}
                   />
                 </div>
                 <div className='form-group'>
                   <input
                     type='text'
-                    placeholder='Publisher of this Book'
-                    name='publisher'
+                    placeholder='editeur du livre'
+                    name='editeur'
                     className='form-control'
-                    value={this.state.publisher}
+                    value={this.state.editeur}
                     onChange={this.onChange}
                   />
                 </div>
