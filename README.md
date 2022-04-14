@@ -13,4 +13,4 @@ $ npm run app
 
 ### Vous trouverez la partie frontale ici.
 
-[FrontEnd - (Client)](https://github.com/adamabilal/mern_projet/client)
+[FrontEnd - (Client)](https://github.com/adamabilal/mern_projet/tree/main/client)
